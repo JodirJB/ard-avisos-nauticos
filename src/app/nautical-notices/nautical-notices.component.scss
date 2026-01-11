@@ -1,0 +1,57 @@
+.page {
+    margin: 0;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;     
+    background: #FAFAFA;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Espacio entre el texto y el ícono */
+}
+
+.title {
+    color: #003876;
+    font-size: 64px;
+    font-weight: bold;
+}
+
+.center-table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // height: 100vh;
+}
+
+.elevation {
+  width: 1600px;
+  height: 692px;
+  background: #FAFAFA;
+  border-radius: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;     
+}
+
+.title-table {
+  color: #003876;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+}
+
+// .mat-mdc-form-field {
+//   font-size: 14px;
+//   width: 100%;
+// }
+
+// td, th {
+//   width: 25%;
+// }

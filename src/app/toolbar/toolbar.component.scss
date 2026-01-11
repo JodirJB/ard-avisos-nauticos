@@ -1,0 +1,45 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.logo {
+    width: 50px;
+    margin-left: 160px;
+    cursor: pointer;
+}
+
+.yellow-title {
+    color: #EFB400;
+    font-size: 16px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.blue-title {
+    color: #003876;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.see-notices {
+    color: #FFFFFF;
+    background: #003876;
+    margin-right: 25px;
+    width: 150px;
+}
+
+.report-notice {
+    color: #EFB400 !important;
+    background: rgba(239, 180, 0, 0.1) !important;
+    border: 5px solid #EFB400 !important;
+    width: 150px;
+}
+
+.buttons-toolbar {
+    margin-right: 100px;
+}
+
+.mat-toolbar {
+    background: #FFFFFF;
+}

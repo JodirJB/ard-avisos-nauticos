@@ -1,0 +1,28 @@
+<app-toolbar></app-toolbar>
+<div class="grid">
+    <div class="box">
+        <div class="section-with-background">
+            <span class="title">Avisos Náuticos Nacionales</span>
+            
+            <img src="/svg/waves.svg" class="wave-bg" alt="waves background" />
+
+            <div class="buttons-home">
+                <button mat-flat-button class="see-notices" routerLink="/nautical-notices">Ver avisos</button>
+                <!-- <a mat-flat-button color="primary" class="see-notices" [routerLink]="'/nautical-notices'" role="button">Ver avisos</a> -->
+                <button mat-flat-button class="report-notice">Reportar aviso</button>
+            </div>
+    
+            <div class="content">
+                El Servicio Hidrográfico de la <span class="ard">Armada de la República Dominicana</span>, <br>
+                ha implementado la sección de <span class="warning">AVISOS A LOS NAVEGANTES</span>, en <br>
+                procura de brindar seguridad a la navegación marítima en los <br>
+                espacios marítimos nacionales.
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <app-carousel></app-carousel>
+    </div>
+</div>
+<app-footer></app-footer>

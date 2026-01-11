@@ -1,0 +1,26 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-color: #003876;
+  padding-left: 100px;
+  gap: 10px;
+}
+
+.box {
+  padding: 20px;
+  color: #FFFFFF;
+  font-size: 16px !important;
+}
+
+span {
+    font-weight: bold;
+}
+
+.title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.content {
+    line-height: 2;
+}

@@ -2,7 +2,15 @@ import { RenderMode, ServerRoute } from '@angular/ssr';
 
 export const serverRoutes: ServerRoute[] = [
   {
-    path: '**',
-    renderMode: RenderMode.Prerender
-  }
+    path: '',
+    renderMode: RenderMode.Server
+  },
+  {
+    path: 'home',
+    renderMode: RenderMode.Server
+  },
+  {
+    path: 'nautical-notices',
+    renderMode: RenderMode.Server
+  },
 ];

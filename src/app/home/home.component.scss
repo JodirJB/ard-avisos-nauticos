@@ -1,0 +1,107 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding-left: 1rem;
+  padding-right: 1rem;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+
+.title {
+    color: #003876;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.see-notices {
+  color: #ffffff;
+  background: #003876 !important;
+  margin-right: 45px;
+  border: none;
+  height: 65px;
+  width: 215px;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  // text-decoration: none;
+  border-radius: 4px; /* opcional: similar a botón material */
+}
+
+.report-notice {
+  color: #EFB400 !important;
+  background: rgba(239, 180, 0, 0.1) !important;
+  border: 3px solid #EFB400 !important;
+  height: 68px;
+  width: 218px;
+  font-weight: 800;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  // text-decoration: none;
+  border-radius: 4px; /* opcional: similar a botón material */
+}
+
+.content {
+  color: #003876;
+  font-weight: 500;
+  line-height: 1.5;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.ard {
+    font-weight: bold;
+}
+
+.warning {
+    color: #FFC000;
+    font-weight: bold;
+}
+
+.buttons-home {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 25px;
+}
+
+.section-with-background {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 0rem;
+  overflow: hidden;
+}
+
+.wave-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* cubre todo sin deformarse */
+  z-index: 0;
+  pointer-events: none; /* no bloquea clics */
+}
+
+.section-with-background > *:not(.wave-bg) {
+  position: relative;
+  z-index: 1; /* asegura que todo esté por encima del SVG */
+}
