@@ -1,6 +1,9 @@
+/* src/app/nautical-notices/nautical-notices.component.scss */
+
 .page {
-    margin: 0;
-    height: 120px;
+    /* Cambiamos height fijo por padding y min-height para flexibilidad */
+    min-height: 150px; 
+    padding: 20px 1rem;
     display: flex;
     justify-content: center;
     align-items: center;     
@@ -10,48 +13,70 @@
 .container {
     display: flex;
     align-items: center;
-    gap: 30px; /* Espacio entre el texto y el ícono */
+    justify-content: center; /* Centrado */
+    gap: 20px; /* Reducimos el gap un poco */
+    flex-wrap: wrap; /* CRUCIAL: Si la pantalla es chica, el ícono baja */
+    text-align: center;
 }
 
 .title {
     color: #003876;
-    font-size: 64px;
+    /* Fuente fluida: Se adapta entre 32px y 64px automáticamente */
+    font-size: clamp(32px, 6vw, 64px);
     font-weight: bold;
+    line-height: 1.1;
+}
+
+/* Controlamos la imagen de la rosa náutica para que no sea gigante en móvil */
+.container img {
+    max-width: 80px; /* Tamaño máximo en móviles */
+    height: auto;
+    
+    @media (min-width: 768px) {
+        max-width: 120px; /* Tamaño normal en PC */
+    }
 }
 
 .center-table {
   display: flex;
   justify-content: center;
-  align-items: center;
-  // height: 100vh;
+  align-items: flex-start; 
+  padding: 1rem; /* Margen para que no pegue a los bordes */
+  width: 100%;
 }
 
+/* Este contenedor envolverá tu tabla */
 .elevation {
-  width: 1600px;
-  height: 692px;
+  width: 100%;           /* ANTES: 1600px -> AHORA: 100% del espacio disponible */
+  max-width: 1600px;     /* Ponemos un tope para pantallas ultra anchas */
   background: #FAFAFA;
-  border-radius: 1px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;     
+  /* Quitamos height fijo para que crezca según la cantidad de avisos */
+  min-height: 400px;      
+  
+  /* ESTO ES VITAL PARA TABLAS EN MÓVIL: */
+  overflow-x: auto;      /* Habilita scroll horizontal SOLO en la tabla */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra suave opcional */
 }
 
 .title-table {
   color: #003876;
   font-size: 24px;
   font-weight: bold;
+  padding: 1rem;
 }
 
 table {
   width: 100%;
+  /* Asegura que la tabla no se aplaste demasiado, forzando el scroll si es necesario */
+  min-width: 800px; 
 }
 
-// .mat-mdc-form-field {
-//   font-size: 14px;
-//   width: 100%;
-// }
-
-// td, th {
-//   width: 25%;
-// }
+/* Ajustes finos para móviles */
+@media (max-width: 600px) {
+    .page {
+        flex-direction: column;
+    }
+}
