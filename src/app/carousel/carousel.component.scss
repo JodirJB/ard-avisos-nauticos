@@ -1,56 +1,84 @@
+/* src/app/carousel/carousel.component.scss */
+
 .carousel-container {
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* OBLIGATORIO: Corta las fotos que están a los lados */
     width: 100%;
-    max-width: 626px;
-    margin: auto;
+    max-width: 626px; /* El ancho máximo lo controla el contenedor, no la imagen */
+    margin: 2rem auto;
+    
+    /* Opcional: Esto redondea TODO el carrusel, arreglando esquinas feas */
+    border-radius: 50px; 
+    /* Sombra al contenedor completo, no a la imagen individual (se ve mejor al deslizar) */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
 }
 
 .carousel {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    /* Transición suave */
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); 
     width: 100%;
+    /* Aseguramos que no haya espacios extraños entre fotos */
+    margin: 0;
+    padding: 0;
 }
 
 .carousel-item {
-    flex: 0 0 100%;
-    min-width: 100%;
-    text-align: center;
+    /* ESTO ARREGLA EL BUG DE "SE VE LA OTRA FOTO": */
+    flex: 0 0 100%;  /* Fuerza a que cada item mida EXACTAMENTE el 100% del contenedor */
+    min-width: 100%; /* Respaldo para navegadores antiguos */
+    
+    /* Centramos la imagen dentro del item */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0; /* Eliminamos márgenes que puedan empujar la siguiente foto */
 }
 
 .carousel-item img {
-    // width: 626px;
-    width: 100%;
-    max-width: 626px;
-    height: 681px;
-    // height: auto;
-    border-radius: 50px;
+    width: 100%; /* La imagen llena su contenedor padre */
+    
+    /* --- AQUÍ ESTÁ LA MAGIA --- */
+    /* Eliminamos el height: 681px fijo que rompía todo en móvil */
+    height: auto; 
+    
+    /* Forzamos la relación de aspecto vertical original (626x681) */
+    aspect-ratio: 626 / 681; 
+    
+    /* Recorta la imagen para que llene el espacio sin deformarse (adiós imagen aplastada) */
+    object-fit: cover; 
+    
     display: block;
-    margin: 0 auto;
-
+    /* El border-radius ya lo maneja el container, así que aquí lo quitamos para que no haga efecto doble raro */
+    border-radius: 0; 
 }
 
+/* Indicadores (puntitos) */
 .carousel-indicators {
+    position: absolute; /* Los ponemos FLOTANDO sobre la imagen, estilo moderno */
+    bottom: 20px;       /* Abajo de todo */
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: center;
-    margin-top: 16px;
-    gap: 8px;
-     padding: 8px 0;
+    gap: 10px;
+    z-index: 10; /* Aseguramos que estén encima de la foto */
 }
 
 .carousel-indicators span {
-    display: inline-block;
+    display: block;
     width: 10px;
     height: 10px;
-    background-color: #ccc;
+    background-color: rgba(255, 255, 255, 0.5); /* Blanco semitransparente */
     cursor: pointer;
     border-radius: 50%;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Sombra para que se vea sobre fotos claras */
 }
 
 .carousel-indicators span.active {
     width: 30px;           
-    height: 10px;         
-    border-radius: 50px;    
-    background-color: #003876
+    border-radius: 20px;    
+    background-color: #EFB400; /* Amarillo corporativo para resaltar */
+    opacity: 1;
 }
