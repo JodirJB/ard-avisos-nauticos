@@ -13,4 +13,8 @@ export const routes: Routes = [
         path: 'nautical-notices',
         loadComponent: () => import('./nautical-notices/nautical-notices.component').then(m => m.NauticalNoticesComponent),
     },
+    {
+        path: 'details/:id',
+        loadComponent: () => import('./details/details.component').then(m => m.DetailsComponent),
+    }
 ];

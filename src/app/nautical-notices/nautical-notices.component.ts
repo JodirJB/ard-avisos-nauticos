@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -53,7 +54,7 @@ export class NauticalNoticesComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -71,4 +72,9 @@ export class NauticalNoticesComponent implements AfterViewInit {
   //     this.dataSource.paginator.firstPage();
   //   }
   // }
+
+  showDetails(id: number) {
+    console.log('Navegar a los detalles del aviso con ID:', id);
+    this.router.navigate(['/details', id]);
+  }
 }

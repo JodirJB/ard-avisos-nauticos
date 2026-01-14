@@ -13,4 +13,8 @@ export const serverRoutes: ServerRoute[] = [
     path: 'nautical-notices',
     renderMode: RenderMode.Server
   },
+  {
+    path: 'details/:id',
+    renderMode: RenderMode.Server
+  },
 ];

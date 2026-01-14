@@ -60,7 +60,7 @@
                 <ng-container matColumnDef="see">
                     <th mat-header-cell *matHeaderCellDef class="icon-header"> </th>
                     <td mat-cell *matCellDef="let element">
-                        <button mat-icon-button class="blue-icon-btn" aria-label="Ver documento">
+                        <button mat-icon-button (click)="showDetails(element.number)" class="blue-icon-btn" aria-label="Ver documento">
                             <mat-icon>visibility</mat-icon>
                         </button>
                     </td>
