@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 
 export interface UserData {
@@ -33,14 +34,21 @@ const ELEMENT_DATA: UserData[] = [
 @Component({
   selector: 'app-nautical-notices',
   standalone: true,
-  imports: [ToolbarComponent, FooterComponent, MatTableModule, MatSelectModule, MatFormFieldModule, MatInputModule, FormsModule, MatSortModule, MatPaginatorModule],
+  imports: [ToolbarComponent, FooterComponent, MatTableModule, MatSelectModule, MatFormFieldModule, MatInputModule, FormsModule, MatSortModule, MatPaginatorModule, MatIconModule],
   templateUrl: './nautical-notices.component.html',
   styleUrl: './nautical-notices.component.scss'
 })
 export class NauticalNoticesComponent implements AfterViewInit {
   // displayedColumns: string[] = ['number', 'date', 'zone', 'detail', 'see'];
-  displayedColumns: string[] = ['number', 'date', 'zone', 'detail'];
+  displayedColumns: string[] = ['number', 'date', 'zone', 'detail', 'see'];
   dataSource = new MatTableDataSource<UserData>(ELEMENT_DATA);
+
+  // Variables para los filtros
+  years: number[] = [2024, 2025, 2026];
+  months: string[] = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+  
+  selectedYear: number | null = null;
+  selectedMonth: string | null = null;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
