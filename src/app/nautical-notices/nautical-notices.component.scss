@@ -1,6 +1,21 @@
+/* --- CONFIGURACIÓN ESTRUCTURAL DEL COMPONENTE --- */
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Fuerza a que ocupe al menos toda la pantalla */
+    width: 100%;       /* Asegura que no se desborde */
+    overflow-x: hidden; /* CORTA cualquier desbordamiento horizontal accidental */
+}
+
+/* Aplica box-sizing a todo dentro de este componente para evitar errores de cálculo */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* --- ESTILOS DE PÁGINA --- */
 .page {
-    min-height: 150px; 
-    padding: 20px 1rem;
+    /* Quitamos alturas fijas que pueden generar espacios raros */
+    padding: 2rem 1rem;
     display: flex;
     justify-content: center;
     align-items: center;     
@@ -14,13 +29,15 @@
     gap: 20px;
     flex-wrap: wrap;
     text-align: center;
+    width: 100%; /* Asegura que ocupe el ancho disponible */
 }
 
 .title {
     color: #003876;
-    font-size: clamp(32px, 6vw, 64px);
+    font-size: clamp(28px, 6vw, 64px); /* Ajustado mín un poco más chico para móviles pequeños */
     font-weight: bold;
     line-height: 1.1;
+    margin: 0; /* Elimina márgenes default del navegador */
 }
 
 .container-header img {
@@ -29,51 +46,54 @@
     @media (min-width: 768px) { max-width: 120px; }
 }
 
+/* --- CONTENEDOR PRINCIPAL --- */
 .center-table {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; 
-  padding: 0 1rem 3rem 1rem; /* Padding bottom extra */
-  width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+    padding: 0 1rem 3rem 1rem; 
+    width: 100%;
+    flex: 1; /* TRUCO: Hace que este div crezca para ocupar todo el espacio vacío y empuje el footer al final */
 }
 
 .elevation {
-  width: 100%;
-  max-width: 1600px;
-  background: #FFFFFF;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  min-height: 400px;      
-  box-shadow: 0 4px 15px rgba(0, 56, 118, 0.1); /* Sombra azulada muy sutil */
-  overflow: hidden;
+    width: 100%;
+    max-width: 1600px;
+    background: #FFFFFF;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    /* Quitamos min-height excesivo, dejamos que el contenido dicte la altura */
+    min-height: 300px;      
+    box-shadow: 0 4px 15px rgba(0, 56, 118, 0.1); 
+    overflow: hidden;
 }
 
 /* --- BARRA SUPERIOR (Título + Filtros) --- */
 .table-top-bar {
-    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
 .title-table {
-  color: #003876;
-  font-size: 22px;
-  font-weight: 800; /* Extra bold */
-  text-transform: uppercase; /* Estilo más técnico */
-  letter-spacing: 0.5px;
+    color: #003876;
+    font-size: 22px;
+    font-weight: 800; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
 }
 
 .filters-container {
     display: flex;
     gap: 15px;
     align-items: center;
-    justify-content: flex-start; /* Alineado a la izquierda */
+    justify-content: flex-start; 
     flex-wrap: wrap;
+    width: 100%; /* Asegura control total del ancho */
 }
 
-/* Estilo compacto para los filtros */
 .filter-field {
     width: 140px;
     font-size: 14px;
@@ -81,25 +101,27 @@
 
 /* --- ESTILOS DE LA TABLA --- */
 .table-container {
-    overflow-x: auto;
+    overflow-x: auto; /* Scroll SOLO aquí dentro */
     width: 100%;
+    /* Importante para suavizar el scroll en iOS */
+    -webkit-overflow-scrolling: touch; 
 }
 
 table.custom-table {
-  width: 100%;
-  min-width: 800px;
+    width: 100%;
+    min-width: 800px; /* Fuerza el scroll horizontal interno si es necesario */
 }
 
 /* Encabezados */
 th.mat-header-cell {
-    color: #003876;          /* Azul corporativo */
-    font-weight: 900;        /* Muy negrita */
+    color: #003876;          
+    font-weight: 900;        
     font-size: 15px;
     text-transform: uppercase;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #003876; /* Línea divisoria azul fuerte */
-    background-color: #fff;  /* Fondo blanco limpio */
+    padding: 15px;
+    border-bottom: 2px solid #003876; 
+    background-color: #fff;
+    white-space: nowrap; /* Evita que los títulos se partan feo */
 }
 
 /* Celdas normales */
@@ -110,79 +132,70 @@ td.mat-cell {
     padding: 10px 15px;
 }
 
-/* Columna No. (Negrita) */
 .bold-text {
     font-weight: bold;
     color: #003876;
 }
 
-/* Columna Detalle */
 .detail-cell {
-    max-width: 350px;
+    max-width: 250px; /* Reducido un poco para evitar columnas muy anchas */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     color: #555;
 }
 
-/* src/app/nautical-notices/nautical-notices.component.scss */
-
+/* --- BOTÓN DE OJO (Ver) --- */
 .blue-icon-btn {
-    /* Color del ícono */
     color: #003876 !important;
-    
-    /* Borde inicial suave (30% de opacidad) para no cargar la vista */
     border: 1px solid rgba(0, 56, 118, 0.3) !important;
-    
-    /* Círculo perfecto */
     border-radius: 50% !important;
-    
-    /* Aseguramos que sea cuadrado para que el círculo no sea un óvalo */
     width: 40px;
     height: 40px;
-    
-    /* Centrado flex para asegurar que el ícono esté en el medio */
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    /* Transición suave para el efecto de hover */
     transition: all 0.2s ease-in-out;
+    background: transparent; /* Aseguramos fondo base */
 
     &:hover {
-        /* Al pasar el mouse, el fondo se pone "azulito" */
         background-color: rgba(0, 56, 118, 0.1) !important;
-        
-        /* El borde se vuelve del azul corporativo sólido */
         border-color: #003876 !important;
-        
-        /* Efecto pop sutil */
         transform: scale(1.1);
-        
-        /* Opcional: Sombra suave al flotar */
-        box-shadow: 0 2px 5px rgba(0, 56, 118, 0.2);
+        cursor: pointer;
     }
 }
 
-/* Header vacío para el icono */
 .icon-header {
-    width: 60px; /* Ancho fijo pequeño */
+    width: 60px; 
 }
 
 /* Mensaje sin datos */
 .mat-no-data-row td {
-    padding: 2rem;
+    padding: 3rem;
     text-align: center;
     color: #666;
     font-style: italic;
 }
 
-/* --- RESPONSIVIDAD --- */
+/* --- RESPONSIVIDAD ESTRICTA --- */
 @media (max-width: 600px) {
-    .filters-container {
-        width: 100%;
+    /* Forzamos que nada sea más ancho que la pantalla */
+    .page, .center-table {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
+
+    .filters-container {
+        gap: 10px;
+    }
+
     .filter-field {
-        width: 48%; /* En móvil ocupan casi mitad y mitad */
+        /* Usamos calc para asegurar que entren dos con el gap */
+        width: calc(50% - 5px); 
+    }
+    
+    .title-table {
+        font-size: 18px; /* Título un poco más pequeño */
     }
 }
