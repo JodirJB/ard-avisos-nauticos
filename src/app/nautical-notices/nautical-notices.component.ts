@@ -1,11 +1,9 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common'; // <--- NECESARIO para las clases dinámicas
 import { Router } from '@angular/router';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
@@ -35,21 +33,38 @@ const ELEMENT_DATA: UserData[] = [
 @Component({
   selector: 'app-nautical-notices',
   standalone: true,
-  imports: [ToolbarComponent, FooterComponent, MatTableModule, MatSelectModule, MatFormFieldModule, MatInputModule, FormsModule, MatSortModule, MatPaginatorModule, MatIconModule],
+  // Agregamos CommonModule aquí para que funcione el HTML nuevo
+  imports: [
+    CommonModule, 
+    ToolbarComponent, 
+    FooterComponent, 
+    MatTableModule, 
+    FormsModule, 
+    MatSortModule, 
+    MatPaginatorModule, 
+    MatIconModule
+    // Nota: Ya no necesitamos MatSelectModule ni MatFormFieldModule para los filtros nuevos
+  ],
   templateUrl: './nautical-notices.component.html',
   styleUrl: './nautical-notices.component.scss'
 })
 export class NauticalNoticesComponent implements AfterViewInit {
-  // displayedColumns: string[] = ['number', 'date', 'zone', 'detail', 'see'];
   displayedColumns: string[] = ['number', 'date', 'zone', 'detail', 'see'];
   dataSource = new MatTableDataSource<UserData>(ELEMENT_DATA);
 
-  // Variables para los filtros
+  // === DATOS DE LOS FILTROS ===
   years: number[] = [2024, 2025, 2026];
   months: string[] = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
   
-  selectedYear: number | null = null;
-  selectedMonth: string | null = null;
+  // === LÓGICA NUEVA PARA MULTI-SELECT ===
+  
+  // Variables para saber si el menú está abierto o cerrado
+  isOpenYear = false;
+  isOpenMonth = false;
+
+  // Arrays para guardar las selecciones múltiples (ej: [2024, 2026])
+  selectedYears: number[] = [];
+  selectedMonths: string[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -58,23 +73,52 @@ export class NauticalNoticesComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    // this.dataSource = new MatTableDataSource(ELEMENT_DATA);
     this.dataSource.sort = this.sort;
-
     console.log('Data source:', this.dataSource.data);
   }
-
-  // applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-
-  //   if (this.dataSource.paginator) {
-  //     this.dataSource.paginator.firstPage();
-  //   }
-  // }
 
   showDetails(id: number) {
     console.log('Navegar a los detalles del aviso con ID:', id);
     this.router.navigate(['/details', id]);
+  }
+
+  // === FUNCIONES PARA CONTROLAR LOS DROPDOWNS NUEVOS ===
+
+  // 1. Abrir/Cerrar menú de Años
+  toggleYearDropdown() {
+    this.isOpenYear = !this.isOpenYear;
+    this.isOpenMonth = false; // Cierra el de meses si abres el de años
+  }
+
+  // 2. Seleccionar/Deseleccionar un año
+  toggleYearSelection(year: number) {
+    const index = this.selectedYears.indexOf(year);
+    if (index >= 0) {
+      this.selectedYears.splice(index, 1); // Si ya estaba, lo quita
+    } else {
+      this.selectedYears.push(year); // Si no estaba, lo agrega
+    }
+  }
+
+  // 3. Abrir/Cerrar menú de Meses
+  toggleMonthDropdown() {
+    this.isOpenMonth = !this.isOpenMonth;
+    this.isOpenYear = false; // Cierra el de años si abres el de meses
+  }
+
+  // 4. Seleccionar/Deseleccionar un mes
+  toggleMonthSelection(month: string) {
+    const index = this.selectedMonths.indexOf(month);
+    if (index >= 0) {
+      this.selectedMonths.splice(index, 1);
+    } else {
+      this.selectedMonths.push(month);
+    }
+  }
+
+  // 5. Cerrar todo (al hacer clic fuera)
+  closeAllDropdowns() {
+    this.isOpenYear = false;
+    this.isOpenMonth = false;
   }
 }
