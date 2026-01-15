@@ -1,1 +1,105 @@
-<p>details works!</p>
+<app-toolbar></app-toolbar>
+
+<div class="min-h-screen bg-gray-100 py-8 px-4 flex justify-center items-start">
+    
+    <div class="w-full max-w-[1400px] bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden p-8">
+
+        <div class="flex items-center gap-4 border-b border-gray-200 pb-6 mb-8">
+            <button (click)="goBack()" 
+                    class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer group">
+                <mat-icon class="text-red-500 text-xl font-bold">close</mat-icon>
+            </button>
+            
+            <h1 class="text-[#003876] font-extrabold text-xl md:text-2xl uppercase tracking-wide m-0">
+                AVISO NAUTICO No. {{ notice.number }}
+            </h1>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-12 mb-10">
+            
+            <div>
+                <label class="block text-[#003876] font-bold text-sm mb-1">Fecha</label>
+                <div class="text-black font-bold text-lg">{{ notice.date }}</div>
+            </div>
+
+            <div>
+                <label class="block text-[#003876] font-bold text-sm mb-1">Zona</label>
+                <div class="text-black font-bold text-lg">{{ notice.zone }}</div>
+            </div>
+
+            <div>
+                <label class="block text-[#003876] font-bold text-sm mb-1">Latitud</label>
+                <div class="text-black font-bold text-lg">{{ notice.latitude }}</div>
+            </div>
+
+            <div>
+                <label class="block text-[#003876] font-bold text-sm mb-1">Localidad</label>
+                <div class="text-black font-bold text-base leading-snug">
+                    {{ notice.locality }}
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-[#003876] font-bold text-sm mb-1">Observaciones</label>
+                <div class="text-black font-bold text-base leading-snug">
+                    {{ notice.observations }}
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-[#003876] font-bold text-sm mb-1">Longitud</label>
+                <div class="text-black font-bold text-lg">{{ notice.longitude }}</div>
+            </div>
+
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-12">
+            
+            <div class="w-full lg:w-3/5 space-y-8">
+                
+                <div>
+                    <label class="block text-[#003876] font-bold text-sm mb-2">Descripción</label>
+                    <p class="text-black font-medium leading-relaxed">
+                        {{ notice.description }}
+                    </p>
+                </div>
+
+                <div>
+                    <label class="block text-[#003876] font-bold text-sm mb-2">Recomendaciones para el navegante</label>
+                    <p class="text-black font-medium leading-relaxed">
+                        {{ notice.recommendations }}
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+                    <div>
+                        <label class="block text-[#003876] font-bold text-sm mb-1">Fuente</label>
+                        <div class="text-black font-bold">{{ notice.source }}</div>
+                    </div>
+                    <div>
+                        <label class="block text-[#003876] font-bold text-sm mb-1">Elaborado por</label>
+                        <div class="text-black font-bold">{{ notice.authoredBy }}</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="w-full lg:w-2/5">
+                <div class="rounded-2xl overflow-hidden h-full min-h-[300px] bg-blue-100 relative">
+                    <img [src]="notice.mapImage" 
+                         alt="Mapa de la zona" 
+                         class="w-full h-full object-cover"
+                         onerror="this.style.display='none'"> 
+                         
+                    <div class="absolute inset-0 flex items-center justify-center text-[#003876]/30 font-bold pointer-events-none -z-10">
+                        Mapa de Zona
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<app-footer></app-footer>
