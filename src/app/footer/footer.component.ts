@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-footer',
-  imports: [MatGridListModule],
+  standalone: true,
+  imports: [MatIconModule],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  
+
 }
