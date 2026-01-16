@@ -1,47 +1,85 @@
-<footer class="!bg-[#003876] text-white px-8 py-12 md:py-16">
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 max-w-7xl mx-auto items-start">
+<footer class="relative !bg-[#003876] text-white pt-16 pb-8 text-sm font-sans">
 
-        <div class="flex flex-col text-center md:text-left space-y-4">
-            <div class="text-sm leading-relaxed opacity-90">
-                <span class="font-bold text-[#EFB400]">Nota:</span> 
-                Esta publicación es difundida por la Autoridad Marítima de la República Dominicana, 
-                (<span class="font-bold text-[#EFB400]">Armada de República Dominicana</span>), 
-                a través de su Servicio Hidrográfico. 
-                Para consultar otras informaciones relacionadas, así como para informar sobre situaciones 
-                que afecten a la seguridad marítima, consulte: 
-                <br class="mt-2 block">
-                <a href="https://www.marina.mil.do/avisosnauticos/" target="_blank" class="font-bold text-[#EFB400] hover:underline break-all">
-                    https://www.marina.mil.do/avisosnauticos/
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#003876] via-[#EFB400] to-[#003876]"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
+
+            <div class="space-y-6">
+                <div class="flex items-center gap-3">
+                     <div class="flex flex-col">
+                        <span class="text-[#EFB400] font-bold uppercase tracking-widest text-xs">Autoridad Marítima</span>
+                        <span class="font-extrabold text-xl tracking-wide">República Dominicana</span>
+                    </div>
+                </div>
+
+                <p class="text-gray-300 leading-relaxed text-justify opacity-90">
+                    Publicación difundida por la <span class="text-white font-semibold">Armada de República Dominicana</span> a través de su Servicio Hidrográfico.
+                    Para reportar situaciones que afecten la seguridad marítima, visite nuestro portal oficial.
+                </p>
+
+                <a href="https://www.marina.mil.do/avisosnauticos/" target="_blank" 
+                   class="inline-flex items-center gap-2 text-[#EFB400] hover:text-white transition-colors duration-300 font-medium group">
+                    <span>Visitar Sitio Oficial</span>
+                    <mat-icon class="text-sm transition-transform group-hover:translate-x-1">arrow_forward</mat-icon>
+                </a>
+            </div>
+
+            <div class="lg:pl-8">
+                <h3 class="text-white font-bold uppercase tracking-widest text-xs mb-6 border-l-2 border-[#EFB400] pl-3">
+                    Ubicación
+                </h3>
+                
+                <div class="flex items-start gap-3 text-gray-300 group">
+                    <mat-icon class="text-[#EFB400] mt-1">location_on</mat-icon>
+                    <div class="leading-relaxed">
+                        <p class="font-medium text-white">Servicio Hidrográfico, ARD.</p>
+                        <p>Av. Iberoamericana, s/n</p>
+                        <p>Edif. Seguridad del Faro a Colón</p>
+                        <p>Los Mameyes, SDE, RD.</p>
+                        <p class="mt-2 text-sm">C.P. <span class="text-white">11701</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-white font-bold uppercase tracking-widest text-xs mb-6 border-l-2 border-[#EFB400] pl-3">
+                    Contacto Directo
+                </h3>
+
+                <div class="space-y-4">
+                    <a href="tel:829-520-0777" class="flex items-center gap-3 text-gray-300 hover:text-white transition-colors group">
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#EFB400] transition-colors duration-300">
+                            <mat-icon class="text-[#EFB400] group-hover:text-[#003876]">phone</mat-icon>
+                        </div>
+                        <span class="font-medium tracking-wide">829-520-0777</span>
+                    </a>
+
+                    <a href="mailto:avisosnauticosshard&#64;academianaval.edu.do" class="flex items-center gap-3 text-gray-300 hover:text-white transition-colors group">
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#EFB400] transition-colors duration-300">
+                            <mat-icon class="text-[#EFB400] group-hover:text-[#003876]">mail</mat-icon>
+                        </div>
+                        <span class="break-all text-sm">avisosnauticosshard&#64;academianaval.edu.do</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-gray-400 text-xs">
+                &copy; 2026 Armada de República Dominicana. Todos los derechos reservados.
+            </p>
+            
+            <div class="flex gap-4">
+                <a href="#" class="text-gray-400 hover:text-[#EFB400] transition-colors"><span class="sr-only">Facebook</span>
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-[#EFB400] transition-colors"><span class="sr-only">Instagram</span>
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772 4.902 4.902 0 011.772-1.153c.636-.247 1.363-.416 2.427-.465C9.673 2.013 10.03 2 12.488 2h-.173zM16.5 8.25a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm-4.197 3.204a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" clip-rule="evenodd"/></svg>
                 </a>
             </div>
         </div>
-
-        <div class="flex flex-col text-center md:text-left">
-            <div class="mb-4">
-                <h3 class="font-extrabold text-base uppercase tracking-wider inline-block border-b border-white/20 pb-2">
-                    Conócenos
-                </h3>
-            </div>
-            <div class="text-sm leading-relaxed opacity-90">
-                Servicio Hidrográfico, ARD., <br>
-                Av. Iberoamericana, s/n, edif. Seguridad del Faro a Colón, ARD, <br>
-                Los Mameyes, SDE, RD. <br>
-                Código Postal: <span class="font-bold text-[#EFB400]">11701</span>
-            </div>
-        </div>
-
-        <div class="flex flex-col text-center md:text-left">
-            <div class="mb-4">
-                <h3 class="font-extrabold text-base uppercase tracking-wider inline-block border-b border-white/20 pb-2">
-                    Contáctanos
-                </h3>
-            </div>
-            <div class="text-sm leading-relaxed opacity-90">
-                Teléfono: <span class="font-bold text-[#EFB400]">829-520-0777</span> <br> 
-                Email: <span class="font-bold text-[#EFB400]">avisosnauticosshard&#64;academianaval.edu.do</span>
-            </div>
-        </div>
-
     </div>
 </footer>
