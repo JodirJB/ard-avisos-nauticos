@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class AdministrationService {
+export class AdministrativeReportService {
 
   private API_URL = 'http://localhost:3000/administrationDB';
 

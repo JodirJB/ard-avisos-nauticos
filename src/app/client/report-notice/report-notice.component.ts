@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToolbarComponent } from '../toolbar/toolbar.component';
-import { FooterComponent } from '../footer/footer.component';
+import { ToolbarComponent } from '../../toolbar/toolbar.component';
+import { FooterComponent } from '../../footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IMaskModule } from 'angular-imask';
 import { ReportNoticeForm } from './report-notice.form';
-import { latitudeValidator, longitudeValidator } from '../validators/geo.validators';
+import { latitudeValidator, longitudeValidator } from '../../validators/geo.validators';
 import { ReportNotice } from './report-notice.interfaces';
 import { ReportNoticeService } from './report-notice.service';
 

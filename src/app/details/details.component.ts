@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common'; 
 import { ActivatedRoute } from '@angular/router';
-import { ToolbarComponent } from '../toolbar/toolbar.component';
-import { FooterComponent } from '../footer/footer.component';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { FooterComponent } from '../footer/footer.component';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
   selector: 'app-details',

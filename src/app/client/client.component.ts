@@ -6,9 +6,11 @@ import { FooterComponent } from '../footer/footer.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
-  selector: 'app-administration',
+  selector: 'app-client',
   imports: [ToolbarComponent, FooterComponent, CarouselComponent, MatButtonModule, RouterModule],
-  templateUrl: './administration.component.html',
-  styleUrls: ['./administration.component.scss']
+  templateUrl: './client.component.html',
+  styleUrl: './client.component.scss'
 })
-export class AdministrationComponent { }
+export class ClientComponent {
+
+}

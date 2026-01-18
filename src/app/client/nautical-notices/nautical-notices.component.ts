@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common'; // <--- NECESARIO para las clases dinámicas
 import { Router } from '@angular/router';
-import { ToolbarComponent } from '../toolbar/toolbar.component';
-import { FooterComponent } from '../footer/footer.component';
+import { ToolbarComponent } from '../../toolbar/toolbar.component';
+import { FooterComponent } from '../../footer/footer.component';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';

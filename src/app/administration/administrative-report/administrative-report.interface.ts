@@ -1,4 +1,4 @@
-export interface Administration {
+export interface AdministrativeReport {
     no: string;
     date: string;
     area: string;

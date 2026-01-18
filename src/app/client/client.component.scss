@@ -1,4 +1,4 @@
-/* src/app/home/home.component.scss */
+/* src/app/client/client.component.scss */
 
 /* Opcional: Si quieres un efecto de entrada suave para toda la página */
 :host {
@@ -10,4 +10,3 @@
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
-

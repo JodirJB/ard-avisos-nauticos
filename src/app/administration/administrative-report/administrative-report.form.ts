@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-export type AdministrationForm = {
+export type AdministrativeReportForm = {
   no: FormControl<string>;
   date: FormControl<string>;
   area: FormControl<string>;

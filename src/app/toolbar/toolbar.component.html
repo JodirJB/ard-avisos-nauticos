@@ -1,14 +1,13 @@
 <mat-toolbar class="!bg-white !px-4 md:!px-8 flex items-center shadow-md z-50 relative h-16 md:h-20">
-  
   <div class="flex-shrink-0">
     <img src="imgs/nuevo-logo-avisos-nauticos.png" 
          alt="Logo de Avisos Náuticos" 
-         routerLink="/home"
+         [routerLink]="homeRoute"
          class="w-[40px] md:w-[50px] cursor-pointer hover:scale-100 transition-transform duration-300"> 
   </div>
 
   <span class="hidden sm:block ml-4 cursor-pointer leading-tight text-xs md:text-base text-[#EFB400] font-medium" 
-        routerLink="/home">
+        [routerLink]="homeRoute">
         Direccion del Servicio Hidrográfico, oceanográfico y ayudas a la navegación<br> 
       <span class="text-[#003876] font-extrabold uppercase tracking-wide">
         Armada de la República Dominicana
@@ -20,17 +19,25 @@
   <div class="flex gap-2 md:gap-4">
       
       <button mat-flat-button 
-              routerLink="/nautical-notices"
+              [routerLink]="noticesRoute"
               class="!bg-[#003876] !text-white !rounded-lg !px-3 md:!px-6 !h-9 md:!h-10 !text-xs md:!text-sm font-bold shadow-md hover:!bg-blue-900 hover:scale-105 transition-all duration-300">
           Ver avisos
       </button>
 
-      <button mat-flat-button
-                routerLink="/report-notice" 
-              class="!bg-[#EFB400]/10 !text-[#EFB400] !border !border-[#EFB400] !rounded-lg !px-3 md:!px-6 !h-9 md:!h-10 !text-xs md:!text-sm font-bold shadow-sm hover:!bg-[#EFB400] hover:!text-white hover:scale-105 transition-all duration-300">
-          Reportar aviso
-      </button>
+      @if (reportRoute === '/report-notice') {
+        <button mat-flat-button
+                  [routerLink]="reportRoute" 
+                class="!bg-[#EFB400]/10 !text-[#EFB400] !border !border-[#EFB400] !rounded-lg !px-3 md:!px-6 !h-9 md:!h-10 !text-xs md:!text-sm font-bold shadow-sm hover:!bg-[#EFB400] hover:!text-white hover:scale-105 transition-all duration-300">
+            Reportar aviso
+        </button>
+      }
 
+      @if (reportRoute === '/administrative-report') {
+        <button mat-flat-button
+                  [routerLink]="reportRoute" 
+                class="!bg-[#EFB400]/10 !text-[#EFB400] !border !border-[#EFB400] !rounded-lg !px-3 md:!px-6 !h-9 md:!h-10 !text-xs md:!text-sm font-bold shadow-sm hover:!bg-[#EFB400] hover:!text-white hover:scale-105 transition-all duration-300">
+            Reporte Administrativo
+        </button>
+      }
   </div>
-
 </mat-toolbar>

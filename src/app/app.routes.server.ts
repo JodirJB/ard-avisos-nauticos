@@ -6,7 +6,7 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Server
   },
   {
-    path: 'home',
+    path: 'client',
     renderMode: RenderMode.Server
   },
   {
@@ -22,7 +22,19 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Server
   },
   {
+    path: 'login',
+    renderMode: RenderMode.Server
+  },
+  {
     path: 'administration',
-    renderMode: RenderMode.Client
+    renderMode: RenderMode.Server
+  },
+  {
+    path: 'administrative-nautical-notices',
+    renderMode: RenderMode.Server
+  },
+  {
+    path: 'administrative-report',
+    renderMode: RenderMode.Server
   }
 ];

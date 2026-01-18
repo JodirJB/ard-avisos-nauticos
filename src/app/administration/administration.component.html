@@ -1,167 +1,42 @@
-<app-toolbar></app-toolbar>
-<div class="min-h-screen bg-[#FAFAFA] py-12 px-4 flex justify-center items-start">
+<app-toolbar [homeRoute]="'/administration'" [reportRoute]="'/administrative-report'" [noticesRoute]="'/administrative-nautical-notices'"></app-toolbar>
 
-    <div
-        class="w-full max-w-4xl bg-white rounded-xl shadow-xl shadow-[#003876]/10 border border-gray-100 overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 min-h-[calc(100vh-64px)] items-center max-w-7xl mx-auto px-4 py-8 md:py-0">
 
-        <div class="pt-10 pb-6 text-center">
-            <h1 class="text-[#003876] font-extrabold text-3xl md:text-4xl tracking-tight inline-block relative">
-                <span class="relative inline-block">
-                    Reporte Administrativo
-                    <span class="absolute left-0 -bottom-2 w-13 h-[6px] bg-[#EFB400] rounded-full"></span>
-                </span>
-            </h1>
-            <p class="text-gray-500 mt-4 text-sm mx-auto">
-                Los campos marcados con <span class="text-red-500">*</span> son obligatorios.
-            </p>
+    <div class="flex flex-col justify-center items-center md:items-start text-center md:text-left w-full relative space-y-8 p-4 md:p-8">
+        
+        <img src="/svg/waves.svg" class="absolute inset-0 w-full h-full object-cover -z-10 opacity-60 pointer-events-none" alt="waves background" />
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#003876] leading-tight drop-shadow-sm">
+            Avisos Náuticos <br class="hidden md:block"> Administrativo
+        </h1>
+
+        <div class="flex flex-wrap gap-4 w-full justify-center md:justify-start">
+            <button mat-flat-button 
+                    routerLink="/administrative-nautical-notices"
+                    class="!bg-[#003876] !text-white !rounded-xl text-lg font-bold shadow-lg shadow-blue-900/20 hover:!bg-blue-900 hover:scale-105 hover:-translate-y-1 transition-all duration-300 w-full md:w-auto min-h-[60px]">
+                Ver avisos
+            </button>
+
+            <button mat-flat-button 
+                    routerLink="/administrative-report"
+                    class="!bg-[#EFB400]/10 !text-[#EFB400] !border-2 !border-[#EFB400] !rounded-xl text-lg font-bold shadow-md hover:!bg-[#EFB400] hover:!text-white hover:scale-105 hover:-translate-y-1 transition-all duration-300 w-full md:w-auto min-h-[60px]">
+                Reporte Administrativo
+            </button>
         </div>
 
-        <div class="p-8 md:p-12">
-            <form  [formGroup]="administrationFormGroup" (submit)="sendReport()" class="space-y-10">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-                    <div class="flex flex-col">
-                        <label class="text-[#003876] font-bold text-sm mb-2">No. <span class="text-red-500">*</span></label>
-                        <input formControlName="no" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+        <div class="text-[#003876] font-medium text-lg md:text-xl leading-relaxed max-w-lg">
+            El Servicio Hidrográfico de la <span class="font-bold">Armada de la República Dominicana</span>,
+            ha implementado la sección de <span class="font-bold text-[#EFB400]">AVISOS A LOS NAVEGANTES</span>,
+            procura de brindar seguridad a la navegación marítima en los
+            espacios marítimos nacionales.
+        </div>
+    </div>
 
-                        @if (no.touched && no.invalid) {
-                            <small class="text-red-500">No. requerido</small>
-                        }
-                    </div>
-
-                    <div class="flex flex-col">
-                        <label class="text-[#003876] font-bold text-sm mb-2">Fecha <span class="text-red-500">*</span></label>
-                        <input formControlName="date" type="date" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
-
-                        @if (date.touched && date.invalid) {
-                            <small class="text-red-500">Fecha requerida</small>
-                        }
-                    </div>
-
-                    <div class="flex flex-col">
-                        <label for="types-notices" class="text-[#003876] font-bold text-sm mb-2">Zona <span class="text-red-500">*</span></label>
-                        <input formControlName="area" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
-
-                        @if (area.touched && area.invalid) {
-                            <small class="text-red-500">Zona requerida</small>
-                        }
-                    </div>
-
-                    <div class="flex flex-col">
-                        <label class="text-[#003876] font-bold text-sm mb-2">Localidad <span class="text-red-500">*</span></label>
-                        <input formControlName="locality" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
-                        @if (locality.touched && locality.invalid) {
-                            <small class="text-red-500">Localidad requerida</small>
-                        }
-                    </div>
-
-                    <div class="flex flex-col">
-                        <label class="text-[#003876] font-bold text-sm mb-2">Detalle</label>
-                        <textarea formControlName="detail" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all"></textarea>
-                            @if (detail.touched && detail.invalid) {
-                                <small class="text-red-500">Detalle requerido</small>
-                            }
-                    </div>
-
-                    <div class="flex flex-col">
-                        <label class="text-[#003876] font-bold text-sm mb-2">Descripción</label>
-                        <textarea formControlName="description" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all"></textarea>
-                        @if (description.touched && description.invalid) {
-                            <small class="text-red-500">Descripción requerida</small>
-                        }
-                    </div>
-                </div>
-
-                <div class="border-t border-gray-100"></div>
-
-                <div>
-                    <h3
-                        class="text-[#003876] font-bold text-lg uppercase tracking-wide mb-6 border-l-4 border-[#EFB400] pl-3">
-                        Datos Referentes a la Anomalía
-                    </h3>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-                        <div class="flex flex-col">
-                            <label class="text-[#003876] font-bold text-sm mb-2">Latitud geográfica <span class="text-red-500">*</span></label>
-                            <input formControlName="latitude" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
-                            @if (latitude.touched && latitude.invalid) {
-                                <small class="text-red-500">
-                                    @if (latitude.errors?.['required']) {
-                                        La latitud es requerida
-                                    }
-    
-                                    @if (latitude.errors?.['latitudeInvalid']) {
-                                        Latitud inválida
-                                    }
-    
-                                    @if (latitude.errors?.['latitudeOutOfRange']) {
-                                        La latitud debe estar entre -90 y 90
-                                    }
-                                </small>
-                            }
-                        </div>
-
-                        <div class="flex flex-col">
-                            <label class="text-[#003876] font-bold text-sm mb-2">Longitud geográfica <span class="text-red-500">*</span></label>
-                            <input formControlName="longitude" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
-                            @if (longitude.touched && longitude.invalid) {
-                                <small class="text-red-500">
-                                    @if (longitude.errors?.['required']) {
-                                        Longitud es requerida
-                                    }
-                                
-                                    @if (longitude.errors?.['longitudeInvalid']) {
-                                        Longitud inválida
-                                    }
-                                    
-                                    @if (longitude.errors?.['longitudeOutOfRange']) {
-                                        La longitud debe estar entre -180 y 180
-                                    }
-                                </small>
-                            }
-                        </div>
-
-                        <div class="md:col-span-2 flex flex-col">
-                            <label class="text-[#003876] font-bold text-sm mb-2">Observaciones</label>
-                            <textarea formControlName="observations" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all"></textarea>
-                            @if (observations.touched && observations.invalid) {
-                                <small class="text-red-500">Observaciones requeridas</small>
-                            }
-                        </div>
-
-                        <div class="md:col-span-2 flex flex-col">
-                            <label class="text-[#003876] font-bold text-sm mb-2">Recomendaciones para el navegante</label>
-                            <textarea formControlName="recommendationsNavigator" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all"></textarea>
-                            @if (recommendationsNavigator.touched && recommendationsNavigator.invalid) {
-                                <small class="text-red-500">Recomendaciones requeridas</small>
-                            }
-                        </div>
-
-                        <div class="md:col-span-2 flex flex-col">
-                            <label class="text-[#003876] font-bold text-sm mb-2">Fuente <span class="text-red-500">*</span></label>
-                            <input formControlName="source" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
-                            @if (source.touched && source.invalid) {
-                                <small class="text-red-500">Fuente requerida</small>
-                            }
-                        </div>
-
-                        <div class="md:col-span-2 flex flex-col">
-                            <label class="text-[#003876] font-bold text-sm mb-2">Elaborado por <span class="text-red-500">*</span></label>
-                            <input formControlName="preparedBy" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
-                            @if (preparedBy.touched && preparedBy.invalid) {
-                                <small class="text-red-500">Nombre requerido</small>
-                            }
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-6">
-                    <button type="submit" [disabled]="!administrationFormGroup.dirty  || administrationFormGroup.invalid" class="w-full bg-[#003876] text-white font-bold rounded-xl py-4 text-lg shadow-lg shadow-blue-900/20 hover:bg-blue-900 hover:scale-[1.01] transition-all duration-300 flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none">
-                        <span>Enviar Reporte</span>
-                        <mat-icon>send</mat-icon>
-                    </button>
-                </div>
-            </form>
+    <div class="w-full flex justify-center items-center p-4  ">
+        <div class="w-full max-w-[626px]">
+            <app-carousel></app-carousel>
         </div>
     </div>
 </div>
+
 <app-footer></app-footer>
