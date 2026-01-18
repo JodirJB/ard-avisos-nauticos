@@ -21,4 +21,8 @@ export const serverRoutes: ServerRoute[] = [
     path: 'report-notice',
     renderMode: RenderMode.Server
   },
+  {
+    path: 'administration',
+    renderMode: RenderMode.Client
+  }
 ];

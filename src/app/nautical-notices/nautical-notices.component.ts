@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common'; // <--- NECESARIO para las clases dinámicas
 import { Router } from '@angular/router';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
@@ -8,6 +8,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { ReportNoticeService } from '../report-notice/report-notice.service';
 
 export interface UserData {
   number: any;
@@ -48,7 +49,7 @@ const ELEMENT_DATA: UserData[] = [
   templateUrl: './nautical-notices.component.html',
   styleUrl: './nautical-notices.component.scss'
 })
-export class NauticalNoticesComponent implements AfterViewInit {
+export class NauticalNoticesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['number', 'date', 'zone', 'detail', 'see'];
   dataSource = new MatTableDataSource<UserData>(ELEMENT_DATA);
 
@@ -69,7 +70,13 @@ export class NauticalNoticesComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private reportNoticeService: ReportNoticeService) {}
+
+  ngOnInit(): void {
+    this.reportNoticeService.getAll().subscribe((data) => {
+      console.log('Datos recibidos del servicio:', data);
+    });
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

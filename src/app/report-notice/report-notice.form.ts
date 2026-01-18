@@ -1,0 +1,16 @@
+import { FormControl } from '@angular/forms';
+
+export type ReportNoticeForm = {
+  dateReceipt: FormControl<string>;
+  dateSubmission: FormControl<string>;
+  typesNotices: FormControl<string>;
+  nauticalChartNumber: FormControl<number>;
+  source: FormControl<string>;
+  email: FormControl<string>;
+  contactPhone: FormControl<string>;
+  numberAndTitle: FormControl<string>;
+  latitude: FormControl<string>;
+  longitude: FormControl<string>;
+  detailsAnomaly: FormControl<string>;
+  attachedDocuments: FormControl<string>;
+};

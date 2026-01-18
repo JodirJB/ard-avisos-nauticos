@@ -18,56 +18,61 @@
         </div>
 
         <div class="p-8 md:p-12">
-            <form (submit)="onSubmit()" class="space-y-10">
-
+            <form  [formGroup]="reportNoticeFormGroup" (submit)="sendReport()" class="space-y-10">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-
                     <div class="flex flex-col">
-                        <label class="text-[#003876] font-bold text-sm mb-2">Fecha de recepción <span
-                                class="text-red-500">*</span></label>
-                        <input type="date"
-                            class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                        <label class="text-[#003876] font-bold text-sm mb-2">Fecha de recepción <span class="text-red-500">*</span></label>
+                        <input formControlName="dateReceipt" type="date" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+
+                        @if (dateReceipt.touched && dateReceipt.invalid) {
+                            <small class="text-red-500">Fecha de recepción requerida</small>
+                        }
                     </div>
 
                     <div class="flex flex-col">
-                        <label class="text-[#003876] font-bold text-sm mb-2">Fecha de remisión <span
-                                class="text-red-500">*</span></label>
-                        <input type="date"
-                            class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                        <label class="text-[#003876] font-bold text-sm mb-2">Fecha de remisión <span class="text-red-500">*</span></label>
+                        <input formControlName="dateSubmission" type="date" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+
+                        @if (dateSubmission.touched && dateSubmission.invalid) {
+                            <small class="text-red-500">Fecha de remisión requerida</small>
+                        }
                     </div>
 
                     <div class="flex flex-col">
                         <label for="types-notices" class="text-[#003876] font-bold text-sm mb-2">Tipos de avisos <span class="text-red-500">*</span></label>
-                        <select id="types-notices" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                        <select id="types-notices" formControlName="typesNotices" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
                             <option selected>Seleccione el tipo de aviso</option>
                             <option value="RD">República Dominicana</option>
                         </select>
+                        @if (typesNotices.touched && typesNotices.invalid) {
+                            <small class="text-red-500">Tipo de aviso requerido</small>
+                        }
                     </div>
 
                     <div class="flex flex-col">
-                        <label class="text-[#003876] font-bold text-sm mb-2">Número de la carta náutica <span
-                                class="text-red-500">*</span></label>
-                        <input type="text"
-                            class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                        <label class="text-[#003876] font-bold text-sm mb-2">Número de la carta náutica <span class="text-red-500">*</span></label>
+                        <input formControlName="nauticalChartNumber" type="number" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                        @if (nauticalChartNumber.touched && nauticalChartNumber.invalid) {
+                            <small class="text-red-500">Número de la carta náutica requerido</small>
+                        }
                     </div>
 
                     <div class="flex flex-col">
-                        <label class="text-[#003876] font-bold text-sm mb-2">Fuente <span
-                                class="text-red-500">*</span></label>
-                        <input type="text"
-                            class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                        <label class="text-[#003876] font-bold text-sm mb-2">Fuente <span class="text-red-500">*</span></label>
+                        <input formControlName="source" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                        @if (source.touched && source.invalid) {
+                            <small class="text-red-500">Fuente requerida</small>
+                        }
                     </div>
 
                     <div class="flex flex-col">
                         <label class="text-[#003876] font-bold text-sm mb-2">E-mail</label>
-                        <input type="text"
-                            class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                        <input formControlName="email" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
                     </div>
 
                     <div class="flex flex-col">
                         <label class="text-[#003876] font-bold text-sm mb-2">Teléfono de contacto</label>
-                        <input type="text"
-                            class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                        <input formControlName="contactPhone" type="tel" [imask]="{mask: '(000)-000-0000'}" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
                     </div>
                 </div>
 
@@ -80,19 +85,44 @@
                     </h3>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-
                         <div class="flex flex-col">
-                            <label class="text-[#003876] font-bold text-sm mb-2">Latitud geográfica <span
-                                    class="text-red-500">*</span></label>
-                            <input type="text" 
-                                class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                            <label class="text-[#003876] font-bold text-sm mb-2">Latitud geográfica <span class="text-red-500">*</span></label>
+                            <input formControlName="latitude" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                            @if (latitude.touched && latitude.invalid) {
+                                <small class="text-red-500">
+                                    @if (latitude.errors?.['required']) {
+                                        La latitud es requerida
+                                    }
+    
+                                    @if (latitude.errors?.['latitudeInvalid']) {
+                                        Latitud inválida
+                                    }
+    
+                                    @if (latitude.errors?.['latitudeOutOfRange']) {
+                                        La latitud debe estar entre -90 y 90
+                                    }
+                                </small>
+                            }
                         </div>
 
                         <div class="flex flex-col">
-                            <label class="text-[#003876] font-bold text-sm mb-2">Longitud geográfica <span
-                                    class="text-red-500">*</span></label>
-                            <input type="text" 
-                                class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                            <label class="text-[#003876] font-bold text-sm mb-2">Longitud geográfica <span class="text-red-500">*</span></label>
+                            <input formControlName="longitude" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                            @if (longitude.touched && longitude.invalid) {
+                                <small class="text-red-500">
+                                    @if (longitude.errors?.['required']) {
+                                        Longitud es requerida
+                                    }
+                                
+                                    @if (longitude.errors?.['longitudeInvalid']) {
+                                        Longitud inválida
+                                    }
+                                    
+                                    @if (longitude.errors?.['longitudeOutOfRange']) {
+                                        La longitud debe estar entre -180 y 180
+                                    }
+                                </small>
+                            }
                         </div>
 
                         <div class="md:col-span-2 flex justify-end">
@@ -104,48 +134,41 @@
                         </div>
 
                         <div class="md:col-span-2 flex flex-col">
-                            <label class="text-[#003876] font-bold text-sm mb-2">Número y título de la carta náutica que
-                                afecta</label>
-                            <input type="text" 
-                                class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                            <label class="text-[#003876] font-bold text-sm mb-2">Número y título de la carta náutica que afecta</label>
+                            <input formControlName="numberAndTitle" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
                         </div>
 
                         <div class="md:col-span-2 flex flex-col">
-                            <label class="text-[#003876] font-bold text-sm mb-2">Detalles de la anomalía <span
-                                    class="text-red-500">*</span></label>
-                            <textarea rows="4" 
-                                class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all resize-none"></textarea>
+                            <label class="text-[#003876] font-bold text-sm mb-2">Detalles de la anomalía <span class="text-red-500">*</span></label>
+                            <textarea formControlName="detailsAnomaly" rows="4" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all resize-none"></textarea>
+                            @if (detailsAnomaly.touched && detailsAnomaly.invalid) {
+                                <small class="text-red-500">Detalles de la anomalía requeridos</small>
+                            }
                         </div>
 
                         <div class="md:col-span-2">
                             <label class="text-[#003876] font-bold text-sm mb-2">Documento adjunto</label>
                             <div class="flex items-center justify-center w-full">
-                                <label for="dropzone-file"
-                                    class="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-[#003876]/30 rounded-xl cursor-pointer bg-blue-50/30 hover:bg-blue-50 transition-colors group">
+                                <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-[#003876]/30 rounded-xl cursor-pointer bg-blue-50/30 hover:bg-blue-50 transition-colors group">
                                     <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                        <mat-icon
-                                            class="!w-12 !h-12 !text-5xl text-gray-400 group-hover:text-[#003876] transition-colors mb-2">cloud_upload</mat-icon>
+                                        <mat-icon class="!w-12 !h-12 !text-5xl text-gray-400 group-hover:text-[#003876] transition-colors mb-2">cloud_upload</mat-icon>
                                         <p class="mb-2 text-sm text-gray-500"><span
-                                                class="font-bold text-[#003876]">Click para subir</span> o arrastra el
-                                            archivo aquí</p>
+                                            class="font-bold text-[#003876]">Click para subir</span> o arrastra el archivo aquí</p>
                                         <p class="text-xs text-gray-400">PDF, PNG, JPG (MAX. 5MB)</p>
                                     </div>
-                                    <input id="dropzone-file" type="file" class="hidden" />
+                                    <input id="dropzone-file" type="file" class="hidden" formControlName="attachedDocuments" />
                                 </label>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
                 <div class="pt-6">
-                    <button type="submit"
-                        class="w-full bg-[#003876] text-white font-bold rounded-xl py-4 text-lg shadow-lg shadow-blue-900/20 hover:bg-blue-900 hover:scale-[1.01] transition-all duration-300 flex justify-center items-center gap-2">
+                    <button type="submit" [disabled]="!reportNoticeFormGroup.dirty  || reportNoticeFormGroup.invalid" class="w-full bg-[#003876] text-white font-bold rounded-xl py-4 text-lg shadow-lg shadow-blue-900/20 hover:bg-blue-900 hover:scale-[1.01] transition-all duration-300 flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none">
                         <span>Enviar Reporte</span>
                         <mat-icon>send</mat-icon>
                     </button>
                 </div>
-
             </form>
         </div>
     </div>
