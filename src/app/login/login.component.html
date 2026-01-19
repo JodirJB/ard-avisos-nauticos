@@ -1,1 +1,73 @@
-<p>login works!</p>
+<div class="relative min-h-screen bg-cover bg-center" 
+     style="background-image: url('/imgs/carousel-img.png');">
+    
+    <div class="absolute inset-0 bg-gradient-to-br from-[#001a36] via-[#003876]/50 to-[#001a36]/60 backdrop-blur-[2px]"></div>
+
+    <div class="relative h-screen flex justify-center items-center px-4">
+        
+        <div class="flex flex-col items-center space-y-6 w-full max-w-md">
+            
+            <div class="flex flex-col items-center animate-fade-in-down">
+                <img src="/imgs/logo-avisos-nauticos.png" 
+                     alt="Logo Armada" 
+                     class="w-24 h-auto drop-shadow-lg mb-2" />
+                
+                <h2 class="text-white font-bold text-2xl tracking-widest uppercase text-center">
+                    Avisos <span class="text-[#EFB400]">Náuticos</span>
+                </h2>
+                <p class="text-blue-200 text-xs tracking-wide uppercase">Armada de República Dominicana</p>
+            </div>
+
+            <div class="w-full bg-[#003876]/80 backdrop-blur-md border border-white/10 p-8 rounded-2xl shadow-2xl shadow-black/50">
+                
+                <h1 class="text-white text-2xl font-bold mb-6 text-center border-b border-white/10 pb-4">
+                    Iniciar Sesión
+                </h1>
+
+                <form class="space-y-5">
+                    
+                    <div class="space-y-1">
+                        <label class="text-blue-100 text-xs font-bold ml-1 uppercase">Correo Electrónico</label>
+                        <div class="relative">
+                            <input type="email" 
+                                   placeholder="ejemplo@armada.mil.do" 
+                                   class="w-full bg-black/20 border border-blue-400/30 text-white text-sm rounded-lg focus:ring-2 focus:ring-[#EFB400] focus:border-transparent block p-3 placeholder-gray-400 shadow-inner outline-none transition-all" />
+                        </div>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-blue-100 text-xs font-bold ml-1 uppercase">Contraseña</label>
+                        <input type="password" 
+                               placeholder="••••••••" 
+                               class="w-full bg-black/20 border border-blue-400/30 text-white text-sm rounded-lg focus:ring-2 focus:ring-[#EFB400] focus:border-transparent block p-3 placeholder-gray-400 shadow-inner outline-none transition-all" />
+                    </div>
+
+                    <div class="flex justify-end">
+                        <a href="#" class="text-[#EFB400] hover:text-white text-xs font-medium transition-colors cursor-pointer hover:underline">
+                            ¿Olvidó su contraseña?
+                        </a>
+                    </div>
+
+                    <button type="button" 
+                            (click)="login()"
+                            class="w-full text-[#003876] bg-[#EFB400] hover:bg-[#ffc820] hover:-translate-y-0.5 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-3 text-center shadow-lg shadow-black/30 transition-all duration-300 uppercase tracking-wide">
+                        Ingresar al Sistema
+                    </button>
+
+                    <div class="text-blue-200 text-sm text-center mt-4">
+                        ¿No tiene una cuenta? 
+                        <a href="#" class="text-white font-bold hover:text-[#EFB400] transition-colors cursor-pointer ml-1 underline decoration-[#EFB400]/50 hover:decoration-[#EFB400]">
+                            Solicitar acceso
+                        </a>
+                    </div>
+                </form>
+
+            </div>
+            
+            <p class="text-white/40 sm:text-xs text-sm text-center max-w-xs">
+                Acceso restringido. Uso exclusivo para personal autorizado del Servicio Hidrográfico.
+            </p>
+
+        </div>
+    </div>
+</div>
