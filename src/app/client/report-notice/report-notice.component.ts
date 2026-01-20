@@ -19,42 +19,24 @@ import { ReportNoticeService } from './report-notice.service';
   styleUrls: ['./report-notice.component.scss']
 })
 export class ReportNoticeComponent implements OnInit {
+  
   reportNoticeFormGroup!: FormGroup<ReportNoticeForm>;
   reportNoticeForm: ReportNotice[] = [];
+  
+  // 1. NUEVO: Variable para almacenar el archivo real (Binario)
+  selectedFile: File | null = null;
 
-  constructor( private fb: FormBuilder, private reportNoticeService: ReportNoticeService ) { }
+  constructor(private fb: FormBuilder, private reportNoticeService: ReportNoticeService) { }
 
-  get dateReceipt() {
-    return this.reportNoticeFormGroup.controls['dateReceipt'];
-  }
-
-  get dateSubmission() {
-    return this.reportNoticeFormGroup.controls['dateSubmission'];
-  }
-
-  get typesNotices() {
-    return this.reportNoticeFormGroup.controls['typesNotices'];
-  }
-
-  get nauticalChartNumber() {
-    return this.reportNoticeFormGroup.controls['nauticalChartNumber'];
-  }
-
-  get source() {
-    return this.reportNoticeFormGroup.controls['source'];
-  }
-
-  get latitude() {
-    return this.reportNoticeFormGroup.controls['latitude'];
-  }
-
-  get longitude() {
-    return this.reportNoticeFormGroup.controls['longitude'];
-  }
-
-  get detailsAnomaly() {
-    return this.reportNoticeFormGroup.controls['detailsAnomaly'];
-  }
+  // --- GETTERS (Se mantienen igual) ---
+  get dateReceipt() { return this.reportNoticeFormGroup.controls['dateReceipt']; }
+  get dateSubmission() { return this.reportNoticeFormGroup.controls['dateSubmission']; }
+  get typesNotices() { return this.reportNoticeFormGroup.controls['typesNotices']; }
+  get nauticalChartNumber() { return this.reportNoticeFormGroup.controls['nauticalChartNumber']; }
+  get source() { return this.reportNoticeFormGroup.controls['source']; }
+  get latitude() { return this.reportNoticeFormGroup.controls['latitude']; }
+  get longitude() { return this.reportNoticeFormGroup.controls['longitude']; }
+  get detailsAnomaly() { return this.reportNoticeFormGroup.controls['detailsAnomaly']; }
 
   ngOnInit(): void {
     this.reportNoticeFormGroup = this.fb.nonNullable.group({
@@ -69,13 +51,32 @@ export class ReportNoticeComponent implements OnInit {
       latitude: ['', [Validators.required, latitudeValidator]],
       longitude: ['', [Validators.required, longitudeValidator]],
       detailsAnomaly: ['', Validators.required],
-      attachedDocuments: ['']
+      attachedDocuments: [''] // Esto solo guardará un string referencial
     });
 
     console.log('reportNoticeFormGroup:', this.reportNoticeFormGroup.value);
   }
 
-  // Función simulada para usar ubicación
+  // 2. NUEVO: Lógica para Capturar el Archivo
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+      // Actualizamos el form control solo para que Angular sepa que el campo "se tocó"
+      this.reportNoticeFormGroup.patchValue({ attachedDocuments: 'file_selected' });
+    }
+  }
+
+  // 3. NUEVO: Lógica para Eliminar el Archivo
+  removeFile() {
+    this.selectedFile = null;
+    this.reportNoticeFormGroup.patchValue({ attachedDocuments: '' });
+    
+    // Opcional: Limpiar el input file del DOM si fuera necesario, 
+    // pero el @if del HTML se encarga de ocultarlo/recrearlo.
+  }
+
+  // --- GEOLOCALIZACIÓN (Se mantiene igual) ---
   useMyLocation() {
     console.log("Obteniendo GPS...");
 
@@ -91,7 +92,6 @@ export class ReportNoticeComponent implements OnInit {
 
         console.log('Lat:', latitude, 'Lng:', longitude);
 
-        // Asignar al formulario
         this.reportNoticeFormGroup.patchValue({
           latitude: latitude.toString(),
           longitude: longitude.toString()
@@ -124,21 +124,48 @@ export class ReportNoticeComponent implements OnInit {
     }
   }
 
-  // Función simulada de envío
+  // 4. ACTUALIZADO: Enviar Reporte usando FormData
   sendReport() {
-    console.log("Formulario enviado");
-
-    const sendReportForm = {
-      ...this.reportNoticeFormGroup.value
+    // Verificar validez antes de enviar
+    if (this.reportNoticeFormGroup.invalid) {
+      this.reportNoticeFormGroup.markAllAsTouched();
+      return;
     }
 
-    this.reportNoticeService.create(sendReportForm).subscribe((response) => {
-      console.log('Reporte enviado con éxito:', response);
-      alert('Reporte enviado con éxito');
-      this.reportNoticeFormGroup.reset();
-    }, (error) => {
-      console.error('Error al enviar el reporte:', error);
-      alert('Error al enviar el reporte');
+    console.log("Preparando envío...");
+
+    // IMPORTANTE: Creamos un FormData. Esto es obligatorio para subir archivos.
+    const formData = new FormData();
+    const formValue = this.reportNoticeFormGroup.getRawValue();
+
+    // Agregamos todos los campos de texto al FormData
+    Object.keys(formValue).forEach(key => {
+      // Ignoramos 'attachedDocuments' porque agregaremos el archivo real manualmente abajo
+      if (key !== 'attachedDocuments') {
+        const value = formValue[key as keyof typeof formValue];
+        // Convertimos a string para asegurar compatibilidad, o cadena vacía si es null
+        formData.append(key, value !== null && value !== undefined ? value.toString() : '');
+      }
+    });
+
+    // Agregamos el archivo real si existe
+    if (this.selectedFile) {
+      formData.append('attachedDocuments', this.selectedFile);
+    }
+
+    // Llamamos al servicio pasando el FormData
+    // Nota: Tu servicio debe esperar 'any' o 'FormData', no la interfaz 'ReportNotice' estricta si esta no soporta FormData.
+    this.reportNoticeService.create(formData as any).subscribe({
+      next: (response) => {
+        console.log('Reporte enviado con éxito:', response);
+        alert('Reporte enviado con éxito');
+        this.reportNoticeFormGroup.reset();
+        this.selectedFile = null; // Limpiamos el archivo seleccionado
+      },
+      error: (error) => {
+        console.error('Error al enviar el reporte:', error);
+        alert('Error al enviar el reporte');
+      }
     });
   }
 }
