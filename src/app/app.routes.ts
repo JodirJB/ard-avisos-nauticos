@@ -1,4 +1,5 @@
-import { Routes } from '@angular/router';;
+import { Routes } from '@angular/router';import { SecurityGuard } from './auth/guards/security.guard';
+;
 
 export const routes: Routes = [
     {
@@ -27,14 +28,20 @@ export const routes: Routes = [
     },
     {
         path: 'administrative-nautical-notices',
-        loadComponent: () => import('./administration/administrative-nautical-notices/administrative-nautical-notices.component').then(m => m.AdministrativeNauticalNoticesComponent)
+        loadComponent: () => import('./administration/administrative-nautical-notices/administrative-nautical-notices.component').then(m => m.AdministrativeNauticalNoticesComponent),
+        canActivate: [SecurityGuard],
+        data: { grantedRoles: ['manage_avisos_nauticos'] }
     },
     {
         path: 'administration',
-        loadComponent: () => import('./administration/administration.component').then(m => m.AdministrationComponent)
+        loadComponent: () => import('./administration/administration.component').then(m => m.AdministrationComponent),
+        canActivate: [SecurityGuard],
+        data: { grantedRoles: ['manage_avisos_nauticos'] }
     },
     {
         path: 'administrative-report',
-        loadComponent: () => import('./administration/administrative-report/administrative-report.component').then(m => m.AdministrativeReportComponent)
+        loadComponent: () => import('./administration/administrative-report/administrative-report.component').then(m => m.AdministrativeReportComponent),
+        canActivate: [SecurityGuard],
+        data: { grantedRoles: ['manage_avisos_nauticos'] }
     }
 ];
