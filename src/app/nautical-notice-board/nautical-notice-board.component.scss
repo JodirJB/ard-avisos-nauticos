@@ -1,0 +1,12 @@
+/* src/app/nautical-notice-board/nautical-notice-board.component.scss */
+
+/* Ajuste fino para inputs más compactos */
+::ng-deep .dense-field .mat-mdc-form-field-flex {
+    height: 48px !important;
+    align-items: center !important;
+}
+
+::ng-deep .dense-field .mat-mdc-text-field-wrapper {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
