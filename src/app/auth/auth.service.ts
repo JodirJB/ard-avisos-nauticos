@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
-import { LocalStorageService } from '../local-storage.service';
+import { LocalStorageService } from '../services/local-storage.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Base64UrlService } from '../base64url.service';
+import { Base64UrlService } from '../services/base64url.service';
 import { JwtAuthResult } from './JwtAuthResult.class';
 // import { environment } from '../../environments/environment';
 
@@ -62,7 +62,7 @@ export class AuthService {
         const roleList = JSON.parse(roles);
         // Always return true for the 'admin_master' role
         for (let x = 0; x < roleList.length; x++) {
-            if (roleList[x].RoleName == 'admin_master' || grantedRoles.includes(roleList[x].RoleName)) {
+            if (roleList[x].RoleName == '' || grantedRoles.includes(roleList[x].RoleName)) {
                 return true;
             }
         }
