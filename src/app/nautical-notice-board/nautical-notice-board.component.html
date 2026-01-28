@@ -224,7 +224,70 @@
                 </table>
             </div>
 
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons class="!border-t !border-gray-100"></mat-paginator>
+            <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons class="!border-t !border-gray-100"></mat-paginator> -->
+             <div class="p-2 border-t border-gray-200 w-full bg-white">
+    <nav class="flex items-center justify-between">
+        
+        <div class="flex justify-between items-center flex-1 lg:hidden">
+            <button class="flex items-center justify-center rounded-full text-yellow-500 w-10 h-10">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                    <path d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <div class="flex items-center gap-2">
+                <select class="h-8 text-sm rounded-lg border-gray-300">
+                    <option>10</option>
+                </select>
+                <span class="text-sm font-medium">per page</span>
+            </div>
+            <button class="flex items-center justify-center rounded-full text-yellow-500 w-10 h-10">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                    <path d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="hidden flex-1 items-center lg:grid grid-cols-3">
+            <div class="flex items-center">
+                <div class="pl-2 text-sm font-medium text-gray-700">
+                   <span class="text-blue-300"> 1</span>2 3 ... 9 10 >
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center">
+                <div class="flex items-center space-x-2">
+                    <span>Mostrar</span>
+                    <select class="h-8 text-sm rounded-lg border-gray-300">
+                        <option>05</option>
+                        <option selected class="text-blue-300">10</option>
+                        <option>25</option>
+                    </select>
+                    <span class="text-sm font-medium text-gray-600">por página</span>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end">
+                <div class="py-1 border rounded-lg border-gray-200">
+                    <ol class="flex items-center text-sm divide-x divide-gray-200">
+                        <li>
+                            <button class="px-2 h-8 flex items-center text-blue-300">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" /></svg>
+                            </button>
+                        </li>
+                        <li><button class="w-8 h-8 flex items-center justify-center">1</button></li>
+                        <li><button class="w-8 h-8 flex items-center justify-center bg-blue-500/10 ring-1 ring-blue-500 text-blue-700 font-bold">2</button></li>
+                        <li><button class="w-8 h-8 flex items-center justify-center">3</button></li>
+                        <li>
+                            <button class="px-2 h-8 flex items-center text-blue-600">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" /></svg>
+                            </button>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
         </div>
     </div>
 </div>
