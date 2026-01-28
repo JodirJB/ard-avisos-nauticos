@@ -83,7 +83,7 @@ export class AdministrativeReportComponent implements OnInit {
       observations: ['', Validators.required],
       recommendationsNavigator: ['', Validators.required],
       source: ['', Validators.required],
-      preparedBy: ['', Validators.required],
+      preparedBy: ['Departamento de Avisos Náuticos, ARD.', Validators.required],
     });
   }
 

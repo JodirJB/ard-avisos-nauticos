@@ -153,9 +153,12 @@ export class ReportNoticeComponent implements OnInit {
       formData.append('attachedDocuments', this.selectedFile);
     }
 
+    console.log("FormData preparado para envío:", formData);
+    console.log("FormValue preparado para envío:", formValue);
+
     // Llamamos al servicio pasando el FormData
     // Nota: Tu servicio debe esperar 'any' o 'FormData', no la interfaz 'ReportNotice' estricta si esta no soporta FormData.
-    this.reportNoticeService.create(formData as any).subscribe({
+    this.reportNoticeService.create(formValue).subscribe({
       next: (response) => {
         console.log('Reporte enviado con éxito:', response);
         alert('Reporte enviado con éxito');

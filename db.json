@@ -1,7 +1,7 @@
 {
   "reportNoticesDB": [
     {
-      "id": 1,
+      "id": "1",
       "dateReceipt": "2026-01-15",
       "dateSubmission": "2026-01-16",
       "typesNotices": "Aviso de Peligro",
@@ -16,7 +16,7 @@
       "attachedDocuments": ""
     },
     {
-      "id": 2,
+      "id": "2",
       "dateReceipt": "2026-01-10",
       "dateSubmission": "2026-01-11",
       "typesNotices": "Aviso de Navegación",
@@ -44,11 +44,26 @@
       "longitude": "-70.66866649999999",
       "detailsAnomaly": "test, test, test.",
       "attachedDocuments": "C:\\fakepath\\XpertCode  - Politica Reembolsos de Gastos.pdf"
+    },
+    {
+      "id": "d3fd",
+      "dateReceipt": "2026-01-27",
+      "dateSubmission": "2026-01-28",
+      "typesNotices": "PM",
+      "nauticalChartNumber": 12025,
+      "source": "Fuente",
+      "email": "fuente@gmail.com",
+      "contactPhone": "8888888888",
+      "numberAndTitle": "Número y título de la carta náutica que afecta",
+      "latitude": "19.777172",
+      "longitude": "-70.668818",
+      "detailsAnomaly": "Detalles de la anomalía",
+      "attachedDocuments": "file_selected"
     }
   ],
   "administrationDB": [
     {
-      "id": 1,
+      "id": "1",
       "reportNoticeId": 1,
       "area": "Zona Norte",
       "severityLevel": "Alto",
@@ -73,6 +88,21 @@
       "recommendationsNavigator": "test",
       "source": "test",
       "preparedBy": "test"
+    },
+    {
+      "id": "34f5",
+      "no": "0012025",
+      "date": "2026-01-27",
+      "area": "north",
+      "locality": "Puerto Plata",
+      "detail": "Detalle",
+      "description": "Descripción",
+      "latitude": "90",
+      "longitude": "180",
+      "observations": "Observaciones",
+      "recommendationsNavigator": "Recomendaciones para el navegante",
+      "source": "Fuente",
+      "preparedBy": "Departamento de Avisos Náuticos, ARD."
     }
   ]
 }

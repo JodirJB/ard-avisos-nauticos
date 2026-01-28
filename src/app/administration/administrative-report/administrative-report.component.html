@@ -39,11 +39,13 @@
 
                     <div class="flex flex-col">
                         <label for="types-notices" class="text-[#003876] font-bold text-sm mb-2">Zona <span class="text-red-500">*</span></label>
-                        <input formControlName="area" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
-
-                        @if (area.touched && area.invalid) {
-                            <small class="text-red-500">Zona requerida</small>
-                        }
+                        <!-- <input formControlName="area" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all"> -->
+                         <select formControlName="area" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                            <option value="" disabled selected>Seleccione la zona</option>
+                            <option value="north">Norte</option>
+                            <option value="south">Sur</option>
+                            <option value="east">Este</option>
+                        </select>
                     </div>
 
                     <div class="flex flex-col">

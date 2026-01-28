@@ -12,9 +12,10 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
   standalone: true,
   imports: [CommonModule, ToolbarComponent, FooterComponent, MatIconModule, MatButtonModule],
   templateUrl: './details.component.html',
-  styleUrl: './details.component.scss'
+  styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
+  
   
   noticeId: string | null = null;
 
