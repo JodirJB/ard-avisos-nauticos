@@ -26,6 +26,26 @@ export class ReportNoticeComponent implements OnInit {
   // 1. NUEVO: Variable para almacenar el archivo real (Binario)
   selectedFile: File | null = null;
 
+  typesOfNotices: string[] = [
+    'Luz de faro o boya apagada',
+    'Restos peligrosos en las vías de navegación',
+    'Nuevas ayudas a la navegación o de cambios en las existentes',
+    'Obstaculos a la deriva',
+    'Zonas en las que se realizan operaciones de búsqueda y salvamento',
+    'Rocas, bancos, arrecifes',
+    'Actividades de tendido de cables o conductos',
+    'Establecimiento de instrumentos científicos',
+    'Establecimiento de estructuras mar adentro en las vías de navegación o cerca de ellas',
+    'Piratería y robos a mano armada',
+    'Fluctuaciones anormales en el nivel del mar',
+    'Ejercicios militares',
+    'Derrame de petróleo',
+    'Colisión de muelle',
+    'Pesca deportiva',
+    'Ciclones, torbellinos y tornados',
+    'Otros',
+  ]
+
   constructor(private fb: FormBuilder, private reportNoticeService: ReportNoticeService) { }
 
   // --- GETTERS (Se mantienen igual) ---
@@ -34,20 +54,24 @@ export class ReportNoticeComponent implements OnInit {
   get typesNotices() { return this.reportNoticeFormGroup.controls['typesNotices']; }
   get nauticalChartNumber() { return this.reportNoticeFormGroup.controls['nauticalChartNumber']; }
   get source() { return this.reportNoticeFormGroup.controls['source']; }
+  get email() { return this.reportNoticeFormGroup.controls['email']; }
+  get contactPhone() { return this.reportNoticeFormGroup.controls['contactPhone']; }
   get latitude() { return this.reportNoticeFormGroup.controls['latitude']; }
   get longitude() { return this.reportNoticeFormGroup.controls['longitude']; }
   get detailsAnomaly() { return this.reportNoticeFormGroup.controls['detailsAnomaly']; }
-
+  get nauticalChartTitle() { return this.reportNoticeFormGroup.controls['nauticalChartTitle']; }
+  
   ngOnInit(): void {
     this.reportNoticeFormGroup = this.fb.nonNullable.group({
       dateReceipt: ['', Validators.required],
       dateSubmission: ['', Validators.required],
       typesNotices: ['', Validators.required],
-      nauticalChartNumber: [0, Validators.required],
+      other: [''],
+      nauticalChartNumber: [0],
       source: ['', Validators.required],
       email: ['', Validators.email],
       contactPhone: [''],
-      numberAndTitle: [''],
+      nauticalChartTitle: [''],
       latitude: ['', [Validators.required, latitudeValidator]],
       longitude: ['', [Validators.required, longitudeValidator]],
       detailsAnomaly: ['', Validators.required],

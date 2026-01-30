@@ -36,13 +36,22 @@
                     <div class="flex flex-col">
                         <label class="text-[#003876] font-bold text-sm mb-2">Tipos de avisos <span class="text-red-500">*</span></label>
                         <select formControlName="typesNotices" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
-                            <option value="" disabled selected>Seleccione el tipo</option>
-                            <option value="PM">Petroleo en el mar</option>
+                             <option value="" disabled selected>Seleccione el tipo</option>
+                             @for (typeOfNotice of typesOfNotices; track $index) {
+                                 <option [value]="typeOfNotice">{{ typeOfNotice }}</option>
+                             }
                         </select>
                     </div>
 
+                    @if (reportNoticeFormGroup.get('typesNotices')?.value === 'Otros') {
                     <div class="flex flex-col">
-                        <label class="text-[#003876] font-bold text-sm mb-2">Número de la carta náutica <span class="text-red-500">*</span></label>
+                        <label class="text-[#003876] font-bold text-sm mb-2">Otros <span class="text-red-500">*</span></label>
+                        <input formControlName="other" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                    </div>
+                    }
+
+                    <div class="flex flex-col">
+                        <label class="text-[#003876] font-bold text-sm mb-2">Número de la carta náutica</label>
                         <input formControlName="nauticalChartNumber" type="number" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
                     </div>
 
@@ -88,8 +97,8 @@
                         </div>
 
                         <div class="md:col-span-2 flex flex-col">
-                            <label class="text-[#003876] font-bold text-sm mb-2">Número y título de la carta náutica que afecta</label>
-                            <input formControlName="numberAndTitle" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
+                            <label class="text-[#003876] font-bold text-sm mb-2">Título de la carta náutica que afecta</label>
+                            <input formControlName="nauticalChartTitle" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#003876] focus:border-[#003876] p-3 outline-none transition-all">
                         </div>
 
                         <div class="md:col-span-2 flex flex-col">
