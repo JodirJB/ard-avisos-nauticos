@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ReportNoticeService {
 
-  private API_URL = 'http://localhost:3000/reportNoticesDB';
+  private API_URL = 'https://armada.mide.gob.do/';
 
   constructor(private http: HttpClient) {}
 
