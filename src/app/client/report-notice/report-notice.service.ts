@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -11,22 +11,57 @@ export class ReportNoticeService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<any[]>(this.API_URL);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer`,
+      })
+    };
+    
+    return this.http.get<any[]>(`${this.API_URL}`, httpOptions);
   }
 
   getById(id: number) {
-    return this.http.get<any>(`${this.API_URL}/${id}`);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer`,
+      })
+    };
+    
+    return this.http.get<any>(`${this.API_URL}/${id}`, httpOptions);
   }
 
   create(reportNotice: any) {
-    return this.http.post(this.API_URL, reportNotice);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer`,
+      })
+    };
+
+    return this.http.post(`${this.API_URL}`, reportNotice, httpOptions);
   }
 
   update(id: number, reportNotice: any) {
-    return this.http.put(`${this.API_URL}/${id}`, reportNotice);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer`,
+      })
+    };
+
+    return this.http.put(`${this.API_URL}/${id}`, reportNotice, httpOptions);
   }
 
   delete(id: number) {
-    return this.http.delete(`${this.API_URL}/${id}`);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer`,
+      })
+    };
+    
+    return this.http.delete(`${this.API_URL}/${id}`, httpOptions);
   }
 }

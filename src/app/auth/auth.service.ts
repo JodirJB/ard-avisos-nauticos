@@ -12,6 +12,7 @@ import { JwtAuthResult } from './JwtAuthResult.class';
     providedIn: 'root'
 })
 export class AuthService {
+    private API_URL = 'https://armada.mide.gob.do/api/auth/login';
     private TokenStorageKeyName = 'auth_token';
     private auth$ = new BehaviorSubject<JwtAuthResult | null>(null);
 
@@ -94,7 +95,7 @@ export class AuthService {
 
         const userInfo = this.base64url.encode(JSON.stringify(params), 'utf8');
 
-        const url = ``;
+        const url = `${this.API_URL}`;
         const headers = { Authentication: `${userInfo}` };
 
         return this.http.get<JwtAuthResult>(url, { headers }).pipe(map((authResult) => {

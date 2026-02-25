@@ -18,8 +18,7 @@ import { ReportNoticeService } from './report-notice.service';
   templateUrl: './report-notice.component.html',
   styleUrls: ['./report-notice.component.scss']
 })
-export class ReportNoticeComponent implements OnInit {
-  
+export class ReportNoticeComponent implements OnInit {  
   reportNoticeFormGroup!: FormGroup<ReportNoticeForm>;
   reportNoticeForm: ReportNotice[] = [];
   

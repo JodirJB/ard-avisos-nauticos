@@ -24,16 +24,17 @@
                     Iniciar Sesión
                 </h1>
 
-                <form class="space-y-5">
+                <form class="space-y-5" [formGroup]="loginFormGroup">
                     
                     <div class="space-y-1">
                         <!-- <label class="text-blue-100 text-xs font-bold ml-1 uppercase">Correo Electrónico</label> -->
                         <label class="text-blue-100 text-xs font-bold ml-1 uppercase">Cédula</label>
 
                         <div class="relative">
-                            <input type="text" 
+                            <input type="text" [imask]="{mask: '000-0000000-0'}"
                                    placeholder="000-0000000-0" 
-                                   class="w-full bg-black/20 border border-blue-400/30 text-white text-sm rounded-lg focus:ring-2 focus:ring-[#EFB400] focus:border-transparent block p-3 placeholder-gray-400 shadow-inner outline-none transition-all" />
+                                   class="w-full bg-black/20 border border-blue-400/30 text-white text-sm rounded-lg focus:ring-2 focus:ring-[#EFB400] focus:border-transparent block p-3 placeholder-gray-400 shadow-inner outline-none transition-all"
+                                   formControlName="IDCard" />
                         </div>
                     </div>
 
@@ -41,7 +42,8 @@
                         <label class="text-blue-100 text-xs font-bold ml-1 uppercase">Contraseña</label>
                         <input type="password" 
                                placeholder="••••••••" 
-                               class="w-full bg-black/20 border border-blue-400/30 text-white text-sm rounded-lg focus:ring-2 focus:ring-[#EFB400] focus:border-transparent block p-3 placeholder-gray-400 shadow-inner outline-none transition-all" />
+                               class="w-full bg-black/20 border border-blue-400/30 text-white text-sm rounded-lg focus:ring-2 focus:ring-[#EFB400] focus:border-transparent block p-3 placeholder-gray-400 shadow-inner outline-none transition-all"
+                               formControlName="password" />
                     </div>
 
                     <div class="flex justify-end">
