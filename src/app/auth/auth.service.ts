@@ -12,6 +12,7 @@ import { JwtAuthResult } from './JwtAuthResult.class';
     providedIn: 'root'
 })
 export class AuthService {
+    private API_URL = 'https://armada.mide.gob.do/api/auth/login';
     private TokenStorageKeyName = 'auth_token';
     private auth$ = new BehaviorSubject<JwtAuthResult | null>(null);
 
@@ -87,27 +88,24 @@ export class AuthService {
         this.localStorage.removeItem(this.TokenStorageKeyName);
     }
 
-login(username: string, password: string): Observable<JwtAuthResult> {
-    this.removeAuthToken();
-    const clnUserName = username.replace(/-/g, '');
-    const params = { username: clnUserName, password };
-    
-    const userInfo = this.base64url.encode(JSON.stringify(params), 'utf8');
+    login(username: string, password: string): Observable<JwtAuthResult> {
+        this.removeAuthToken();
+        const clnUserName = username.replace(/-/g, '');
+        const params = { username: clnUserName, password };
 
-    const url = ``;
-    const headers = { Authentication: `${userInfo}` };
+        const userInfo = this.base64url.encode(JSON.stringify(params), 'utf8');
 
-    return this.http
-      .get<JwtAuthResult>(url, { headers })
-      .pipe(
-        map((authResult) => {
-          this.localStorage.setItem(
-            this.TokenStorageKeyName,
-            authResult.accessToken
-          );
-          this.auth$.next(authResult);
-          return authResult;
+        const url = `${this.API_URL}`;
+        const headers = { Authentication: `${userInfo}` };
+
+        return this.http.get<JwtAuthResult>(url, { headers }).pipe(map((authResult) => {
+            this.localStorage.setItem(
+                this.TokenStorageKeyName,
+                authResult.accessToken
+            );
+            this.auth$.next(authResult);
+            return authResult;
         })
-      );
-}
+        );
+    }
 }

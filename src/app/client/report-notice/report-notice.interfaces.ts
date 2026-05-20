@@ -3,11 +3,11 @@ export interface ReportNotice {
     dateReceipt: string;
     dateSubmission: string;
     typesNotices: string;
-    nauticalChartNumber: number;
+    nauticalChartNumber?: number;
     source: string;
     email?: string;
     contactPhone?: string;
-    numberAndTitle?: string;
+    nauticalChartTitle?: string;
     latitude: string;
     longitude: string;
     detailsAnomaly: string;
